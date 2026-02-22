@@ -1,0 +1,470 @@
+{
+  "type": "record",
+  "name": "GatedLoopbackFlower",
+  "namespace": "org.example.datastructures",
+  "fields": [
+    {
+      "name": "graph_id",
+      "type": "string"
+    },
+    {
+      "name": "root_node_id",
+      "type": "string"
+    },
+    {
+      "name": "nodes",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Node",
+          "fields": [
+            {
+              "name": "node_id",
+              "type": "string"
+            },
+            {
+              "name": "node_type",
+              "type": {
+                "type": "enum",
+                "name": "NodeType",
+                "symbols": [
+                  "ROOT",
+                  "CHILD",
+                  "REFERENCE"
+                ]
+              }
+            },
+            {
+              "name": "url",
+              "type": "string"
+            },
+            {
+              "name": "domain_fingerprint",
+              "type": [
+                "null",
+                "bytes"
+              ],
+              "default": null
+            },
+            {
+              "name": "origin_root_id",
+              "type": "string"
+            },
+            {
+              "name": "metadata",
+              "type": {
+                "type": "map",
+                "values": [
+                  "null",
+                  "string",
+                  "long",
+                  "double",
+                  "boolean"
+                ]
+              },
+              "default": {}
+            },
+            {
+              "name": "node_hex_id",
+              "type": "string",
+              "doc": "Two-char hex in global range 00..63 (0x64 total slots across all roots)."
+            },
+            {
+              "name": "lineage_suffix",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "root_hex_prefix",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "canonical_node_identity",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "edges",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Edge",
+          "fields": [
+            {
+              "name": "edge_id",
+              "type": "string"
+            },
+            {
+              "name": "from_node_id",
+              "type": "string"
+            },
+            {
+              "name": "to_node_id",
+              "type": "string"
+            },
+            {
+              "name": "kind",
+              "type": {
+                "type": "enum",
+                "name": "EdgeKind",
+                "symbols": [
+                  "NEW_ROOT",
+                  "NEW_CHILD",
+                  "ALIAS"
+                ]
+              }
+            },
+            {
+              "name": "created_at_epoch_ms",
+              "type": "long"
+            },
+            {
+              "name": "gate_signature",
+              "type": [
+                "null",
+                "bytes"
+              ],
+              "default": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "gate_policy",
+      "type": {
+        "type": "record",
+        "name": "GatePolicy",
+        "fields": [
+          {
+            "name": "allow_shared_root_alias",
+            "type": "boolean"
+          },
+          {
+            "name": "max_depth",
+            "type": "int"
+          },
+          {
+            "name": "max_branch_factor",
+            "type": "int"
+          },
+          {
+            "name": "cycle_detection",
+            "type": {
+              "type": "enum",
+              "name": "CycleDetection",
+              "symbols": [
+                "DFS_COLOR",
+                "VISIT_STAMP",
+                "TOPO_CACHE"
+              ]
+            }
+          },
+          {
+            "name": "global_identity_hex_space_limit",
+            "type": "int",
+            "default": 100
+          }
+        ]
+      }
+    },
+    {
+      "name": "visit_ledger",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "VisitLedger",
+          "fields": [
+            {
+              "name": "epoch_id",
+              "type": "string"
+            },
+            {
+              "name": "seen_path_hashes",
+              "type": {
+                "type": "array",
+                "items": "string"
+              }
+            },
+            {
+              "name": "root_claims",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "record",
+                  "name": "RootClaim",
+                  "fields": [
+                    {
+                      "name": "node_id",
+                      "type": "string"
+                    },
+                    {
+                      "name": "owning_root_id",
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "algebraic_laws",
+      "type": {
+        "type": "record",
+        "name": "AlgebraicLaws",
+        "fields": [
+          {
+            "name": "identity_closure",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "collections",
+            "type": {
+              "type": "record",
+              "name": "CollectionLaws",
+              "fields": [
+                {
+                  "name": "associativity",
+                  "type": "boolean",
+                  "default": true
+                },
+                {
+                  "name": "associativity_notation",
+                  "type": "string",
+                  "doc": "Use literal --- for one-to-many or --+* for one-to-one."
+                },
+                {
+                  "name": "inverse",
+                  "type": "boolean",
+                  "default": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "immutability_policy",
+      "type": {
+        "type": "record",
+        "name": "ImmutabilityPolicy",
+        "fields": [
+          {
+            "name": "immutable_by_version",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "operation_mode",
+            "type": {
+              "type": "enum",
+              "name": "OperationMode",
+              "symbols": [
+                "STREAM",
+                "BLOCK"
+              ]
+            }
+          },
+          {
+            "name": "sibling_status",
+            "type": {
+              "type": "enum",
+              "name": "SiblingStatus",
+              "symbols": [
+                "OPEN",
+                "STABLE",
+                "SEALED"
+              ]
+            }
+          },
+          {
+            "name": "cousin_pointer",
+            "type": [
+              "null",
+              "string"
+            ],
+            "default": null
+          },
+          {
+            "name": "safe_to_stream",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    {
+      "name": "storage_policy",
+      "type": {
+        "type": "record",
+        "name": "StoragePolicy",
+        "fields": [
+          {
+            "name": "encrypted_at_rest",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "decrypt_only_for_validation",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "store_cleartext_after_verified",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "ancestor_verification_required",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "audit_transition_events",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "anchor_never_encrypt",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "root_is_anchor",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "root_encryption_blocked",
+            "type": "boolean",
+            "default": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "role_policy",
+      "type": {
+        "type": "record",
+        "name": "RolePolicy",
+        "fields": [
+          {
+            "name": "node_role",
+            "type": {
+              "type": "enum",
+              "name": "NodeRole",
+              "symbols": [
+                "ROOT",
+                "ANCHOR",
+                "ANCESTOR",
+                "VALIDATOR",
+                "VERIFIER"
+              ]
+            }
+          },
+          {
+            "name": "can_encrypt_self",
+            "type": "boolean"
+          },
+          {
+            "name": "can_decrypt_self",
+            "type": "boolean"
+          },
+          {
+            "name": "can_encrypt_others",
+            "type": "boolean"
+          },
+          {
+            "name": "can_decrypt_others",
+            "type": "boolean"
+          },
+          {
+            "name": "can_promote_to_anchor",
+            "type": "boolean"
+          },
+          {
+            "name": "can_cross_branch_traverse",
+            "type": "boolean"
+          }
+        ]
+      }
+    },
+    {
+      "name": "remote_sync_policy",
+      "type": {
+        "type": "record",
+        "name": "RemoteSyncPolicy",
+        "fields": [
+          {
+            "name": "remote_save_mode",
+            "type": {
+              "type": "enum",
+              "name": "RemoteSaveMode",
+              "symbols": [
+                "AES_ENCRYPT_AND_STORE"
+              ]
+            }
+          },
+          {
+            "name": "shutdown_unresponsive_after_seconds",
+            "type": "int",
+            "default": 60
+          },
+          {
+            "name": "block_processing_during_remote_save",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "sync_requires_remote_save_complete",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "encrypted_state_mismatch_marks_dirty",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "dirty_blocks_sync",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "dirty_allowed_actions",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "enum",
+                "name": "DirtyAction",
+                "symbols": [
+                  "SAVE_AES_TO_DISK",
+                  "SHUTDOWN_ALL_PROCESSES",
+                  "NOTIFY_AGENTS_PENDING_SHUTDOWN"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

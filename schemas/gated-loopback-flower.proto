@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package org.example.datastructures;
+
+message GatedLoopbackFlower {
+  string graph_id = 1;
+  string root_node_id = 2;
+  repeated Node nodes = 3;
+  repeated Edge edges = 4;
+  GatePolicy gate_policy = 5;
+  VisitLedger visit_ledger = 6;
+  AlgebraicLaws algebraic_laws = 7;
+  ImmutabilityPolicy immutability_policy = 8;
+  StoragePolicy storage_policy = 9;
+  RolePolicy role_policy = 10;
+  RemoteSyncPolicy remote_sync_policy = 11;
+}
+
+message Node {
+  string node_id = 1;
+  NodeType node_type = 2;
+  string url = 3;
+  bytes domain_fingerprint = 4;
+  string origin_root_id = 5;
+  map<string, string> metadata = 6;
+  string node_hex_id = 7; // constrained to hex range 00..63 across all roots
+  string lineage_suffix = 8;
+  string root_hex_prefix = 9;
+  string canonical_node_identity = 10;
+}
+
+enum NodeType {
+  NODE_TYPE_UNSPECIFIED = 0;
+  ROOT = 1;
+  CHILD = 2;
+  REFERENCE = 3;
+}
+
+message Edge {
+  string edge_id = 1;
+  string from_node_id = 2;
+  string to_node_id = 3;
+  EdgeKind kind = 4;
+  uint64 created_at_epoch_ms = 5;
+  bytes gate_signature = 6;
+}
+
+enum EdgeKind {
+  EDGE_KIND_UNSPECIFIED = 0;
+  NEW_ROOT = 1;
+  NEW_CHILD = 2;
+  ALIAS = 3;
+}
+
+message GatePolicy {
+  bool allow_shared_root_alias = 1;
+  uint32 max_depth = 2;
+  uint32 max_branch_factor = 3;
+  CycleDetection cycle_detection = 4;
+  uint32 global_identity_hex_space_limit = 5; // must be 100 (0x64)
+}
+
+enum CycleDetection {
+  CYCLE_DETECTION_UNSPECIFIED = 0;
+  DFS_COLOR = 1;
+  VISIT_STAMP = 2;
+  TOPO_CACHE = 3;
+}
+
+message VisitLedger {
+  string epoch_id = 1;
+  repeated string seen_path_hashes = 2;
+  repeated RootClaim root_claims = 3;
+}
+
+message RootClaim {
+  string node_id = 1;
+  string owning_root_id = 2;
+}
+
+message AlgebraicLaws {
+  bool identity_closure = 1;
+  CollectionLaws collections = 2;
+}
+
+message CollectionLaws {
+  bool associativity = 1;
+  AssociativityNotation associativity_notation = 2;
+  bool inverse = 3;
+}
+
+enum AssociativityNotation {
+  ASSOCIATIVITY_NOTATION_UNSPECIFIED = 0;
+  ONE_TO_MANY_DASH3 = 1; // maps to ---
+  ONE_TO_ONE_DASH2_PLUS_STAR = 2; // maps to --+*
+}
+
+enum OperationMode {
+  OPERATION_MODE_UNSPECIFIED = 0;
+  STREAM = 1;
+  BLOCK = 2;
+}
+
+enum SiblingStatus {
+  SIBLING_STATUS_UNSPECIFIED = 0;
+  OPEN = 1;
+  STABLE = 2;
+  SEALED = 3;
+}
+
+message ImmutabilityPolicy {
+  bool immutable_by_version = 1;
+  OperationMode operation_mode = 2;
+  SiblingStatus sibling_status = 3;
+  string cousin_pointer = 4;
+  bool safe_to_stream = 5;
+}
+
+message StoragePolicy {
+  bool encrypted_at_rest = 1;
+  bool decrypt_only_for_validation = 2;
+  bool store_cleartext_after_verified = 3;
+  bool ancestor_verification_required = 4;
+  bool audit_transition_events = 5;
+  bool anchor_never_encrypt = 6;
+  bool root_is_anchor = 7;
+  bool root_encryption_blocked = 8;
+}
+
+enum NodeRole {
+  NODE_ROLE_UNSPECIFIED = 0;
+  ROLE_ROOT = 1;
+  ROLE_ANCHOR = 2;
+  ROLE_ANCESTOR = 3;
+  ROLE_VALIDATOR = 4;
+  ROLE_VERIFIER = 5;
+}
+
+message RolePolicy {
+  NodeRole node_role = 1;
+  bool can_encrypt_self = 2;
+  bool can_decrypt_self = 3;
+  bool can_encrypt_others = 4;
+  bool can_decrypt_others = 5;
+  bool can_promote_to_anchor = 6;
+  bool can_cross_branch_traverse = 7;
+}
+
+
+enum RemoteSaveMode {
+  REMOTE_SAVE_MODE_UNSPECIFIED = 0;
+  AES_ENCRYPT_AND_STORE = 1;
+}
+
+enum DirtyAction {
+  DIRTY_ACTION_UNSPECIFIED = 0;
+  SAVE_AES_TO_DISK = 1;
+  SHUTDOWN_ALL_PROCESSES = 2;
+  NOTIFY_AGENTS_PENDING_SHUTDOWN = 3;
+}
+
+message RemoteSyncPolicy {
+  RemoteSaveMode remote_save_mode = 1;
+  uint32 shutdown_unresponsive_after_seconds = 2;
+  bool block_processing_during_remote_save = 3;
+  bool sync_requires_remote_save_complete = 4;
+  bool encrypted_state_mismatch_marks_dirty = 5;
+  bool dirty_blocks_sync = 6;
+  repeated DirtyAction dirty_allowed_actions = 7;
+}

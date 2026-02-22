@@ -99,7 +99,7 @@
         },
         "node_hex_id": {
           "type": "string",
-          "pattern": "^[0-9a-fA-F]{2}$"
+          "pattern": "^(?:[0-5][0-9a-fA-F]|6[0-3])$"
         },
         "lineage_suffix": {
           "type": [
@@ -163,7 +163,8 @@
         "allow_shared_root_alias",
         "max_depth",
         "max_branch_factor",
-        "cycle_detection"
+        "cycle_detection",
+        "global_identity_hex_space_limit"
       ],
       "properties": {
         "allow_shared_root_alias": {
@@ -184,6 +185,10 @@
             "VISIT_STAMP",
             "TOPO_CACHE"
           ]
+        },
+        "global_identity_hex_space_limit": {
+          "type": "integer",
+          "const": 100
         }
       }
     },

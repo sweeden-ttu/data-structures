@@ -67,7 +67,8 @@
             },
             {
               "name": "node_hex_id",
-              "type": "string"
+              "type": "string",
+              "doc": "Two-char hex in global range 00..63 (0x64 total slots across all roots)."
             },
             {
               "name": "lineage_suffix",
@@ -170,6 +171,11 @@
                 "TOPO_CACHE"
               ]
             }
+          },
+          {
+            "name": "global_identity_hex_space_limit",
+            "type": "int",
+            "default": 100
           }
         ]
       }

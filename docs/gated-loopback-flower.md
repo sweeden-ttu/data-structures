@@ -23,14 +23,15 @@ This makes GLF safe for crawling, trust-graph expansion, lineage analysis, and f
 
 
 ### Node identity encoding rules
-1. **Primary node identity**: each node has a unique two-character hexadecimal identifier `hh` (`[0-9a-fA-F]{2}`).
+1. **Primary node identity**: each node has a unique two-character hexadecimal identifier `hh`, constrained to global identity space `0x00..0x63` (limit `0x64` slots) across all roots.
 2. **Extended lineage identity**: node identity may be clarified as:
    - `hh` + first three single characters of ancestor nodes in traversal order + first two hex chars of root identifier (if root is not null).
 3. **Canonical identity fields**:
-   - `node_hex_id` (required): two-char hex unique within graph scope.
+   - `node_hex_id` (required): two-char hex unique within global identity space.
    - `lineage_suffix` (optional): concatenated three-char ancestor initials.
    - `root_hex_prefix` (optional): first two hex chars of root id, omitted when root is null.
    - `canonical_node_identity` (derived): `node_hex_id + lineage_suffix + root_hex_prefix`.
+4. **Global identity space cap**: node identity allocation across all roots is limited to `0x64` total hex-space positions (0x00-0x63).
 
 ### Edge Kinds
 - **NEW_ROOT**: creates/link-binds to a different root domain graph (federated bloom).
@@ -116,7 +117,7 @@ This makes GLF safe for crawling, trust-graph expansion, lineage analysis, and f
   - `domain_fingerprint: bytes`
   - `origin_root_id: NodeID`
   - `metadata: Map<string, Any>`
-  - `node_hex_id: Hex2`
+  - `node_hex_id: Hex2(0x00..0x63)`
   - `lineage_suffix: string | null`
   - `root_hex_prefix: Hex2 | null`
   - `canonical_node_identity: string`
@@ -134,6 +135,7 @@ This makes GLF safe for crawling, trust-graph expansion, lineage analysis, and f
   - `max_depth: uint32`
   - `max_branch_factor: uint32`
   - `cycle_detection: DFS_COLOR | VISIT_STAMP | TOPO_CACHE`
+  - `global_identity_hex_space_limit: uint32` (=0x64)
 
 - `VisitLedger`
   - `epoch_id: UUID`
@@ -332,6 +334,7 @@ When using adjacency matrices for dense subgraphs:
 - Schema backward compatibility rules documented.
 - Identity-closure, associativity, inverse property tests for collection operations.
 - Node identity tests: unique two-char hex id, canonical lineage identity construction, and root prefix handling when root is null/non-null.
+- Node identity-space cap tests: enforce 0x64 global slots (0x00-0x63) across all roots.
 - Associativity notation tests for `---` (one-to-many) and `--+*` (one-to-one).
 - Encrypted-at-rest, decrypt-for-verify-only, and post-verify cleartext materialization tests (including ancestors).
 - Anchor permanence tests: root always anchor, no anchor re-encryption, validator/verifier promotion and cross-branch traversal authorization tests.

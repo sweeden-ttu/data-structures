@@ -4,7 +4,7 @@ Abstract data structure definitions available across all programming libraries a
 
 ## Overview
 
-This repository provides a comprehensive library of abstract data structures that can be used across all programming projects. It follows consistent interfaces and can be integrated with any Python project.
+This repository provides a comprehensive library of abstract data structures that can be used across all programming projects. It follows consistent interfaces and can be integrated with any Python, Ruby, DotNet, Java, TypeScript, JavaScript, Node, Perl, C, C++, Go, Rust, SWIFT, Objective-C, COBOL, and SQL project.
 
 ## Features
 

@@ -23,7 +23,7 @@ message Node {
   bytes domain_fingerprint = 4;
   string origin_root_id = 5;
   map<string, string> metadata = 6;
-  string node_hex_id = 7;
+  string node_hex_id = 7; // constrained to hex range 00..63 across all roots
   string lineage_suffix = 8;
   string root_hex_prefix = 9;
   string canonical_node_identity = 10;
@@ -57,6 +57,7 @@ message GatePolicy {
   uint32 max_depth = 2;
   uint32 max_branch_factor = 3;
   CycleDetection cycle_detection = 4;
+  uint32 global_identity_hex_space_limit = 5; // must be 100 (0x64)
 }
 
 enum CycleDetection {

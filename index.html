@@ -1,0 +1,284 @@
+---
+layout: landing
+title: Spring 2026 Semester
+excerpt: >
+  Advancing Computer Science Through Verification, Validation, and Cryptographic Excellence
+
+article_header:
+  actions:
+    - text: View Courses
+      type: error
+      url: "#courses"
+    - text: Track Progress
+      type: outline-theme-dark
+      url: "#progress"
+  height: 100vh
+  theme: dark
+  background_color: "#1a237e"
+  background_image:
+    gradient: "linear-gradient(135deg, rgba(26, 35, 126, 0.95), rgba(40, 53, 147, 0.9), rgba(0, 105, 92, 0.85))"
+    src: https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80
+
+data:
+  sections:
+    - title: Welcome to Spring 2026
+      excerpt: Two comprehensive courses focused on software quality assurance and cryptographic security. Track your progress, access resources, and collaborate with peers throughout the semester.
+      theme: light
+      background_color: "#f5f5f5"
+      actions:
+        - text: Start Learning
+          type: error
+          url: "#courses"
+        - text: View Schedule
+          type: outline-primary
+          url: "#schedule"
+
+    - title: <i class="fas fa-graduation-cap"></i> Spring 2026 Courses
+      excerpt: Select a course to explore student presentations, research articles, peer reviews, assignments, lecture materials, projects, and track your progress.
+      theme: light
+      background_color: "#ffffff"
+      children:
+        - title: <i class="fas fa-shield-alt"></i> Software Verification & Validation
+          excerpt: Master the principles and practices of ensuring software quality through systematic testing, validation, and verification techniques. Learn industry-standard methodologies for building reliable and secure systems.
+          content: '<div class="progress-indicator"><span class="progress-label">Course Progress</span><div class="progress-bar-container"><div class="progress-bar"><div class="progress-fill" style="--progress-percentage: 65%"></div></div><span class="progress-percentage">65%</span></div></div>'
+          actions:
+            - text: Enter Course
+              type: info
+              url: "#svv"
+
+        - title: <i class="fas fa-lock"></i> Encryption
+          excerpt: Explore cryptographic algorithms, security protocols, and practical applications of encryption in modern computing systems. Understand the mathematical foundations and real-world implementations of secure communication.
+          content: '<div class="progress-indicator"><span class="progress-label">Course Progress</span><div class="progress-bar-container"><div class="progress-bar"><div class="progress-fill" style="--progress-percentage: 72%"></div></div><span class="progress-percentage">72%</span></div></div>'
+          actions:
+            - text: Enter Course
+              type: success
+              url: "#encryption"
+
+    - title: Software Verification & Validation
+      excerpt: Comprehensive resources and learning materials for mastering software quality assurance
+      theme: dark
+      background_color: "#283593"
+      image:
+        src: https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=1200&q=80
+        is_row: true
+        full_width: true
+        style: "max-width: 1200px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);"
+      actions:
+        - text: <i class="fas fa-book-open"></i> Course Materials
+          type: outline-theme-dark
+          url: "#svv-resources"
+        - text: <i class="fas fa-chart-line"></i> View Progress
+          type: outline-theme-dark
+          url: "#svv-progress"
+
+    - title: SV&V Resources
+      excerpt: Access all course materials and track your learning progress
+      theme: light
+      background_color: "#f5f5f5"
+      children:
+        - title: <i class="fas fa-presentation"></i> Student Presentations
+          excerpt: View and present research findings, project demonstrations, and topic explorations. Collaborate with classmates on cutting-edge verification methodologies.
+          content: '<div class="status-badges"><span class="tag tag--success">8 Completed</span> <span class="tag tag--info">2 Upcoming</span></div>'
+          actions:
+            - text: View All
+              type: info
+              url: "#"
+
+        - title: <i class="fas fa-file-alt"></i> Research Articles
+          excerpt: Curated collection of academic papers and industry research on verification methodologies, testing strategies, and quality assurance best practices.
+          content: '<div class="status-badges"><span class="tag tag--success">12 Read</span> <span class="tag tag--warning">5 To Read</span></div>'
+          actions:
+            - text: Browse Articles
+              type: info
+              url: "#"
+
+        - title: <i class="fas fa-users-cog"></i> Peer Review
+          excerpt: Participate in collaborative code reviews and provide constructive feedback. Learn from your peers' approaches to verification challenges.
+          content: '<div class="status-badges"><span class="tag tag--success">15 Reviews</span> <span class="tag tag--info">3 Pending</span></div>'
+          actions:
+            - text: Review Now
+              type: info
+              url: "#"
+
+        - title: <i class="fas fa-tasks"></i> Assignments & Homework
+          excerpt: Complete weekly assignments and practice problems to reinforce learning. Apply verification techniques to real-world scenarios.
+          content: '<div class="status-badges"><span class="tag tag--success">10 Submitted</span> <span class="tag tag--warning">2 Due Soon</span></div>'
+          actions:
+            - text: View Assignments
+              type: info
+              url: "#"
+
+        - title: <i class="fas fa-book-open"></i> Lecture Notes & Materials
+          excerpt: Access comprehensive lecture slides, notes, and supplementary materials. Review key concepts and study for exams.
+          content: '<div class="status-badges"><span class="tag tag--info">Updated Weekly</span></div>'
+          actions:
+            - text: Access Materials
+              type: info
+              url: "#"
+
+        - title: <i class="fas fa-project-diagram"></i> Projects
+          excerpt: Work on hands-on projects applying verification techniques to real-world scenarios. Build tools and frameworks for automated testing.
+          content: '<div class="status-badges"><span class="tag tag--success">1 Completed</span> <span class="tag tag--info">1 In Progress</span></div>'
+          actions:
+            - text: View Projects
+              type: info
+              url: "#"
+
+        - title: <i class="fas fa-chart-line"></i> Progress Tracker
+          excerpt: Monitor your course completion, grades, and achievement milestones. Stay on track with personalized learning analytics.
+          content: '<div class="status-badges"><span class="tag tag--success">65% Complete</span></div>'
+          actions:
+            - text: View Dashboard
+              type: info
+              url: "#"
+
+    - title: Encryption & Cryptography
+      excerpt: Dive deep into the mathematical foundations and practical applications of modern cryptography
+      theme: dark
+      background_color: "#00695c"
+      image:
+        src: https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&q=80
+        is_row: true
+        full_width: true
+        style: "max-width: 1200px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);"
+      actions:
+        - text: <i class="fas fa-book-open"></i> Course Materials
+          type: outline-theme-dark
+          url: "#encryption-resources"
+        - text: <i class="fas fa-chart-line"></i> View Progress
+          type: outline-theme-dark
+          url: "#encryption-progress"
+
+    - title: Encryption Resources
+      excerpt: Access all course materials and track your learning progress
+      theme: light
+      background_color: "#f5f5f5"
+      children:
+        - title: <i class="fas fa-presentation"></i> Student Presentations
+          excerpt: Explore cryptographic concepts through peer presentations and demonstrations. Share discoveries about encryption algorithms and security protocols.
+          content: '<div class="status-badges"><span class="tag tag--success">10 Completed</span> <span class="tag tag--info">1 Upcoming</span></div>'
+          actions:
+            - text: View All
+              type: success
+              url: "#"
+
+        - title: <i class="fas fa-file-alt"></i> Research Articles
+          excerpt: Latest research in cryptography, security protocols, and encryption standards. Stay current with emerging threats and solutions.
+          content: '<div class="status-badges"><span class="tag tag--success">15 Read</span> <span class="tag tag--warning">3 To Read</span></div>'
+          actions:
+            - text: Browse Articles
+              type: success
+              url: "#"
+
+        - title: <i class="fas fa-users-cog"></i> Peer Review
+          excerpt: Review cryptographic implementations and security analyses from peers. Critique protocol designs and identify vulnerabilities.
+          content: '<div class="status-badges"><span class="tag tag--success">18 Reviews</span> <span class="tag tag--info">2 Pending</span></div>'
+          actions:
+            - text: Review Now
+              type: success
+              url: "#"
+
+        - title: <i class="fas fa-tasks"></i> Assignments & Homework
+          excerpt: Solve cryptographic challenges and implement security algorithms. Practice encryption techniques and attack scenarios.
+          content: '<div class="status-badges"><span class="tag tag--success">12 Submitted</span> <span class="tag tag--warning">1 Due Soon</span></div>'
+          actions:
+            - text: View Assignments
+              type: success
+              url: "#"
+
+        - title: <i class="fas fa-book-open"></i> Lecture Notes & Materials
+          excerpt: Comprehensive resources on encryption algorithms, protocols, and applications. Master symmetric and asymmetric cryptography.
+          content: '<div class="status-badges"><span class="tag tag--info">Updated Weekly</span></div>'
+          actions:
+            - text: Access Materials
+              type: success
+              url: "#"
+
+        - title: <i class="fas fa-project-diagram"></i> Projects
+          excerpt: Build secure systems and implement cryptographic protocols. Develop real-world encryption tools and security solutions.
+          content: '<div class="status-badges"><span class="tag tag--success">2 Completed</span> <span class="tag tag--info">1 In Progress</span></div>'
+          actions:
+            - text: View Projects
+              type: success
+              url: "#"
+
+        - title: <i class="fas fa-chart-line"></i> Progress Tracker
+          excerpt: Track your mastery of cryptographic concepts and achievements. Visualize your learning journey through encryption topics.
+          content: '<div class="status-badges"><span class="tag tag--success">72% Complete</span></div>'
+          actions:
+            - text: View Dashboard
+              type: success
+              url: "#"
+
+    - title: <i class="fas fa-calendar-alt"></i> Semester Schedule
+      excerpt: Stay on track with important dates and deadlines
+      theme: light
+      background_color: "#ffffff"
+      actions:
+        - text: View Full Calendar
+          type: error
+          url: "#calendar"
+      children:
+        - title: Week 1-4
+          excerpt: Course introduction, foundational concepts, and initial assignments. Focus on understanding core principles and methodologies.
+          content: '<span class="tag tag--success">Completed</span>'
+
+        - title: Week 5-8
+          excerpt: Midterm preparation, advanced topics, and group projects. Dive deeper into specialized areas and collaborative work.
+          content: '<span class="tag tag--info">In Progress</span>'
+
+        - title: Week 9-12
+          excerpt: Advanced implementations, research presentations, and practical applications. Apply learned concepts to real-world scenarios.
+          content: '<span class="tag tag--warning">Upcoming</span>'
+
+        - title: Week 13-16
+          excerpt: Final projects, comprehensive review, and semester wrap-up. Showcase your learning and prepare for finals.
+          content: '<span class="tag tag--warning">Upcoming</span>'
+
+    - title: <i class="fas fa-trophy"></i> Semester Progress Overview
+      excerpt: Your comprehensive academic journey through Spring 2026
+      theme: dark
+      background_color: "#1a237e"
+      content: >
+        <div class="semester-stats">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-percentage"></i></div>
+            <h3>69%</h3>
+            <p>Overall Progress</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>35</h3>
+            <p>Completed Items</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-spinner"></i></div>
+            <h3>8</h3>
+            <p>In Progress</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-clock"></i></div>
+            <h3>18</h3>
+            <p>Pending</p>
+          </div>
+        </div>
+      actions:
+        - text: <i class="fab fa-github"></i> GitHub
+          type: outline-theme-dark
+          url: https://github.com/sweeden-ttu
+        - text: <i class="fab fa-linkedin"></i> LinkedIn
+          type: outline-theme-dark
+          url: https://linkedin.com/in/weedens
+
+    - title: About This Portfolio
+      excerpt: Built with Jekyll TeXt Theme - A powerful, customizable static site generator perfect for academic portfolios and course management.
+      theme: light
+      background_color: "#f5f5f5"
+      actions:
+        - text: <i class="fas fa-envelope"></i> Contact Me
+          type: primary
+          url: "mailto:sweeden@ttu.edu"
+        - text: <i class="fas fa-home"></i> Visit My Website
+          type: outline-primary
+          url: "https://scottweeden.online"
+---

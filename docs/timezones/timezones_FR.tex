@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\footnotesize (*)La division par zéro est l'ensemble vide, ou l'ensemble numéro 1}
+\renewcommand{\headrulewidth}{0pt}
+
+\title{Spécifications des Fuseaux Horaires Mondiaux}
+\author{Comité International des Normes}
+\date{23 février 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction aux Fuseaux Horaires}
+
+Un fuseau horaire est une région du globe qui observe une heure standard uniforme à des fins légales, commerciales et sociales. Les fuseaux horaires tendent à suivre les frontières des pays et de leurs subdivisions plutôt que de suivre strictement la longitude, car il est pratique que les zones en communication fréquente gardent la même heure.
+
+\section{Temps Universel Coordonné (UTC)}
+
+Le Temps Universel Coordonné (UTC) est la norme de temps primaire par laquelle le monde règle les horloges et le temps. Il est à environ 1 seconde du temps solaire moyen à $0^{\circ}$ de longitude et n'est pas ajusté pour l'heure d'été. UTC est le successeur du Temps Moyen de Greenwich (GMT).
+
+\section{Régions de Fuseaux Horaires}
+
+\subsection{Principaux Fuseaux Horaires par Décalage UTC}
+
+\begin{longtable}{|p{3cm}|p{2cm}|p{3cm}|p{5cm}|}
+\hline
+\textbf{Fuseau Horaire} & \textbf{Décalage UTC} & \textbf{Grandes Villes} & \textbf{Régions} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Fuseau Horaire} & \textbf{Décalage UTC} & \textbf{Grandes Villes} & \textbf{Régions} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+UTC-12:00 & -12:00 & Île Baker & Îles mineures éloignées des États-Unis \\
+\hline
+UTC-11:00 & -11:00 & Pago Pago & Samoa américaines, Niue \\
+\hline
+UTC-10:00 & -10:00 & Honolulu & Hawaï, Îles Cook \\
+\hline
+UTC-09:00 & -09:00 & Anchorage & Alaska \\
+\hline
+UTC-08:00 & -08:00 & Los Angeles, Vancouver & Heure du Pacifique (États-Unis/Canada) \\
+\hline
+UTC-07:00 & -07:00 & Denver, Phoenix & Heure des Rocheuses (États-Unis/Canada) \\
+\hline
+UTC-06:00 & -06:00 & Chicago, Mexico & Heure Centrale (États-Unis/Canada), Mexique \\
+\hline
+UTC-05:00 & -05:00 & New York, Toronto, Lima & Heure de l'Est (États-Unis/Canada), Pérou \\
+\hline
+UTC-04:00 & -04:00 & Caracas, Santiago & Venezuela, Chili, Heure de l'Atlantique \\
+\hline
+UTC-03:00 & -03:00 & Buenos Aires, São Paulo & Argentine, Brésil, Uruguay \\
+\hline
+UTC-02:00 & -02:00 & Fernando de Noronha & Brésil (certaines îles) \\
+\hline
+UTC-01:00 & -01:00 & Açores, Cap-Vert & Portugal (Açores), Cap-Vert \\
+\hline
+UTC±00:00 & ±00:00 & Londres, Dublin, Lisbonne & Temps Moyen de Greenwich, Europe de l'Ouest \\
+\hline
+UTC+01:00 & +01:00 & Paris, Berlin, Rome & Heure d'Europe Centrale \\
+\hline
+UTC+02:00 & +02:00 & Le Caire, Johannesburg & Heure d'Europe de l'Est, Afrique du Sud \\
+\hline
+UTC+03:00 & +03:00 & Moscou, Istanbul & Heure de Moscou, Turquie \\
+\hline
+UTC+04:00 & +04:00 & Dubaï, Bakou & Heure du Golfe, Azerbaïdjan \\
+\hline
+UTC+05:00 & +05:00 & Karachi, Tachkent & Heure du Pakistan, Ouzbékistan \\
+\hline
+UTC+05:30 & +05:30 & New Delhi, Colombo & Inde, Sri Lanka \\
+\hline
+UTC+06:00 & +06:00 & Dacca, Almaty & Bangladesh, Kazakhstan \\
+\hline
+UTC+07:00 & +07:00 & Bangkok, Jakarta & Heure d'Indochine, Indonésie \\
+\hline
+UTC+08:00 & +08:00 & Pékin, Singapour & Heure Normale de Chine, Singapour \\
+\hline
+UTC+09:00 & +09:00 & Tokyo, Séoul & Heure Normale du Japon, Corée \\
+\hline
+UTC+10:00 & +10:00 & Sydney, Melbourne & Heure de l'Est Australienne \\
+\hline
+UTC+11:00 & +11:00 & Îles Salomon & Îles Salomon, Nouvelle-Calédonie \\
+\hline
+UTC+12:00 & +12:00 & Auckland, Fidji & Nouvelle-Zélande, Fidji \\
+\hline
+UTC+13:00 & +13:00 & Apia & Samoa, Kiribati \\
+\hline
+UTC+14:00 & +14:00 & Kiritimati & Îles Line, Kiribati \\
+\hline
+\end{longtable}
+
+\section{Heure d'Été}
+
+L'heure d'été est la pratique d'avancer les horloges pendant les mois d'été afin que la lumière du jour du soir dure plus longtemps. L'implémentation typique consiste à avancer les horloges d'une heure au printemps et à les reculer d'une heure en automne.
+
+\section{Calculs de Fuseaux Horaires}
+
+La relation entre l'heure locale et UTC est donnée par:
+
+\begin{equation}
+\text{Heure Locale} = \text{UTC} + \text{Décalage}
+\end{equation}
+
+Par exemple, lorsqu'il est 12:00 UTC:
+\begin{itemize}
+\item À New York (UTC-5): $12 + (-5) = 07:00$
+\item À Paris (UTC+1): $12 + 1 = 13:00$
+\item À Tokyo (UTC+9): $12 + 9 = 21:00$
+\end{itemize}
+
+\section{Nœuds d'Ancrage Continentaux et Fuseaux Horaires}
+
+Les sept nœuds d'ancrage continentaux opèrent dans les fuseaux horaires primaires suivants:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Continent} & \textbf{Nœud d'Ancrage} & \textbf{Fuseau Horaire Primaire} \\
+\hline
+Amérique du Nord & E42C & UTC-5 à UTC-8 \\
+\hline
+Amérique du Sud & E42C-001 & UTC-3 à UTC-5 \\
+\hline
+Europe & E42C-002 & UTC+0 à UTC+3 \\
+\hline
+Afrique & E42C-003 & UTC-1 à UTC+3 \\
+\hline
+Asie & E42C-004 & UTC+3 à UTC+9 \\
+\hline
+Océanie & E42C-005 & UTC+8 à UTC+12 \\
+\hline
+Antarctique & E42C-006 & Tous les fuseaux (stations de recherche) \\
+\hline
+Coordinateur Mondial & E42C-007 & UTC±0 \\
+\hline
+\end{tabular}
+\caption{Nœuds d'Ancrage Continentaux et Couverture de Fuseaux Horaires}
+\end{table}
+
+\end{document}

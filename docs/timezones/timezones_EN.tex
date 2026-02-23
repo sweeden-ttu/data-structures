@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\footnotesize (*)Division by zero is the empty set, or set number 1}
+\renewcommand{\headrulewidth}{0pt}
+
+\title{Global Timezone Specifications}
+\author{International Standards Committee}
+\date{February 23, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction to Timezones}
+
+A timezone is a region of the globe that observes a uniform standard time for legal, commercial, and social purposes. Timezones tend to follow the boundaries of countries and their subdivisions instead of strictly following longitude, because it is convenient for areas in frequent communication to keep the same time.
+
+\section{Coordinated Universal Time (UTC)}
+
+Coordinated Universal Time (UTC) is the primary time standard by which the world regulates clocks and time. It is within about 1 second of mean solar time at $0^{\circ}$ longitude and is not adjusted for daylight saving time. UTC is the successor to Greenwich Mean Time (GMT).
+
+\section{Timezone Regions}
+
+\subsection{Major Timezones by UTC Offset}
+
+\begin{longtable}{|p{3cm}|p{2cm}|p{3cm}|p{5cm}|}
+\hline
+\textbf{Timezone} & \textbf{UTC Offset} & \textbf{Major Cities} & \textbf{Regions} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Timezone} & \textbf{UTC Offset} & \textbf{Major Cities} & \textbf{Regions} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+UTC-12:00 & -12:00 & Baker Island & United States Minor Outlying Islands \\
+\hline
+UTC-11:00 & -11:00 & Pago Pago & American Samoa, Niue \\
+\hline
+UTC-10:00 & -10:00 & Honolulu & Hawaii, Cook Islands \\
+\hline
+UTC-09:00 & -09:00 & Anchorage & Alaska \\
+\hline
+UTC-08:00 & -08:00 & Los Angeles, Vancouver & Pacific Time (US/Canada) \\
+\hline
+UTC-07:00 & -07:00 & Denver, Phoenix & Mountain Time (US/Canada) \\
+\hline
+UTC-06:00 & -06:00 & Chicago, Mexico City & Central Time (US/Canada), Mexico \\
+\hline
+UTC-05:00 & -05:00 & New York, Toronto, Lima & Eastern Time (US/Canada), Peru \\
+\hline
+UTC-04:00 & -04:00 & Caracas, Santiago & Venezuela, Chile, Atlantic Time \\
+\hline
+UTC-03:00 & -03:00 & Buenos Aires, São Paulo & Argentina, Brazil, Uruguay \\
+\hline
+UTC-02:00 & -02:00 & Fernando de Noronha & Brazil (some islands) \\
+\hline
+UTC-01:00 & -01:00 & Azores, Cape Verde & Portugal (Azores), Cape Verde \\
+\hline
+UTC±00:00 & ±00:00 & London, Dublin, Lisbon & Greenwich Mean Time, Western Europe \\
+\hline
+UTC+01:00 & +01:00 & Paris, Berlin, Rome & Central European Time \\
+\hline
+UTC+02:00 & +02:00 & Cairo, Johannesburg & Eastern European Time, South Africa \\
+\hline
+UTC+03:00 & +03:00 & Moscow, Istanbul & Moscow Time, Turkey \\
+\hline
+UTC+04:00 & +04:00 & Dubai, Baku & Gulf Standard Time, Azerbaijan \\
+\hline
+UTC+05:00 & +05:00 & Karachi, Tashkent & Pakistan Time, Uzbekistan \\
+\hline
+UTC+05:30 & +05:30 & New Delhi, Colombo & India, Sri Lanka \\
+\hline
+UTC+06:00 & +06:00 & Dhaka, Almaty & Bangladesh, Kazakhstan \\
+\hline
+UTC+07:00 & +07:00 & Bangkok, Jakarta & Indochina Time, Indonesia \\
+\hline
+UTC+08:00 & +08:00 & Beijing, Singapore & China Standard Time, Singapore \\
+\hline
+UTC+09:00 & +09:00 & Tokyo, Seoul & Japan Standard Time, Korea \\
+\hline
+UTC+10:00 & +10:00 & Sydney, Melbourne & Australian Eastern Time \\
+\hline
+UTC+11:00 & +11:00 & Solomon Islands & Solomon Islands, New Caledonia \\
+\hline
+UTC+12:00 & +12:00 & Auckland, Fiji & New Zealand, Fiji \\
+\hline
+UTC+13:00 & +13:00 & Apia & Samoa, Kiribati \\
+\hline
+UTC+14:00 & +14:00 & Kiritimati & Line Islands, Kiribati \\
+\hline
+\end{longtable}
+
+\section{Daylight Saving Time}
+
+Daylight Saving Time (DST) is the practice of advancing clocks during summer months so that evening daylight lasts longer. The typical implementation is to set clocks forward by one hour in the spring and set clocks back by one hour in autumn.
+
+\section{Timezone Calculations}
+
+The relationship between local time and UTC is given by:
+
+\begin{equation}
+\text{Local Time} = \text{UTC} + \text{Offset}
+\end{equation}
+
+For example, when it is 12:00 UTC:
+\begin{itemize}
+\item In New York (UTC-5): $12 + (-5) = 07:00$
+\item In Paris (UTC+1): $12 + 1 = 13:00$
+\item In Tokyo (UTC+9): $12 + 9 = 21:00$
+\end{itemize}
+
+\section{Continental Anchor Nodes and Timezones}
+
+The seven continental anchor nodes operate across the following primary timezones:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Continent} & \textbf{Anchor Node} & \textbf{Primary Timezone} \\
+\hline
+North America & E42C & UTC-5 to UTC-8 \\
+\hline
+South America & E42C-001 & UTC-3 to UTC-5 \\
+\hline
+Europe & E42C-002 & UTC+0 to UTC+3 \\
+\hline
+Africa & E42C-003 & UTC-1 to UTC+3 \\
+\hline
+Asia & E42C-004 & UTC+3 to UTC+9 \\
+\hline
+Oceania & E42C-005 & UTC+8 to UTC+12 \\
+\hline
+Antarctica & E42C-006 & All timezones (research stations) \\
+\hline
+Global Coordinator & E42C-007 & UTC±0 \\
+\hline
+\end{tabular}
+\caption{Continental Anchor Nodes and Timezone Coverage}
+\end{table}
+
+\end{document}

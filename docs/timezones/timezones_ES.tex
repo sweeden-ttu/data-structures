@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\footnotesize (*)La división por cero es el conjunto vacío, o el conjunto número 1}
+\renewcommand{\headrulewidth}{0pt}
+
+\title{Especificaciones de Zonas Horarias Mundiales}
+\author{Comité Internacional de Normas}
+\date{23 de febrero de 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción a las Zonas Horarias}
+
+Una zona horaria es una región del globo que observa una hora estándar uniforme para propósitos legales, comerciales y sociales. Las zonas horarias tienden a seguir los límites de los países y sus subdivisiones en lugar de seguir estrictamente la longitud, porque es conveniente que las áreas en comunicación frecuente mantengan la misma hora.
+
+\section{Tiempo Universal Coordinado (UTC)}
+
+El Tiempo Universal Coordinado (UTC) es el estándar de tiempo primario por el cual el mundo regula los relojes y el tiempo. Está dentro de aproximadamente 1 segundo del tiempo solar medio a $0^{\circ}$ de longitud y no se ajusta para el horario de verano. UTC es el sucesor del Tiempo Medio de Greenwich (GMT).
+
+\section{Regiones de Zonas Horarias}
+
+\subsection{Principales Zonas Horarias por Desplazamiento UTC}
+
+\begin{longtable}{|p{3cm}|p{2cm}|p{3cm}|p{5cm}|}
+\hline
+\textbf{Zona Horaria} & \textbf{Desplazamiento UTC} & \textbf{Ciudades Principales} & \textbf{Regiones} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Zona Horaria} & \textbf{Desplazamiento UTC} & \textbf{Ciudades Principales} & \textbf{Regiones} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+UTC-12:00 & -12:00 & Isla Baker & Islas Ultramarinas Menores de EE.UU. \\
+\hline
+UTC-11:00 & -11:00 & Pago Pago & Samoa Americana, Niue \\
+\hline
+UTC-10:00 & -10:00 & Honolulu & Hawái, Islas Cook \\
+\hline
+UTC-09:00 & -09:00 & Anchorage & Alaska \\
+\hline
+UTC-08:00 & -08:00 & Los Ángeles, Vancouver & Hora del Pacífico (EE.UU./Canadá) \\
+\hline
+UTC-07:00 & -07:00 & Denver, Phoenix & Hora de las Montañas (EE.UU./Canadá) \\
+\hline
+UTC-06:00 & -06:00 & Chicago, Ciudad de México & Hora Central (EE.UU./Canadá), México \\
+\hline
+UTC-05:00 & -05:00 & Nueva York, Toronto, Lima & Hora del Este (EE.UU./Canadá), Perú \\
+\hline
+UTC-04:00 & -04:00 & Caracas, Santiago & Venezuela, Chile, Hora del Atlántico \\
+\hline
+UTC-03:00 & -03:00 & Buenos Aires, São Paulo & Argentina, Brasil, Uruguay \\
+\hline
+UTC-02:00 & -02:00 & Fernando de Noronha & Brasil (algunas islas) \\
+\hline
+UTC-01:00 & -01:00 & Azores, Cabo Verde & Portugal (Azores), Cabo Verde \\
+\hline
+UTC±00:00 & ±00:00 & Londres, Dublín, Lisboa & Tiempo Medio de Greenwich, Europa Occidental \\
+\hline
+UTC+01:00 & +01:00 & París, Berlín, Roma & Hora de Europa Central \\
+\hline
+UTC+02:00 & +02:00 & El Cairo, Johannesburgo & Hora de Europa del Este, Sudáfrica \\
+\hline
+UTC+03:00 & +03:00 & Moscú, Estambul & Hora de Moscú, Turquía \\
+\hline
+UTC+04:00 & +04:00 & Dubái, Bakú & Hora Estándar del Golfo, Azerbaiyán \\
+\hline
+UTC+05:00 & +05:00 & Karachi, Taskent & Hora de Pakistán, Uzbekistán \\
+\hline
+UTC+05:30 & +05:30 & Nueva Delhi, Colombo & India, Sri Lanka \\
+\hline
+UTC+06:00 & +06:00 & Daca, Almaty & Bangladés, Kazajistán \\
+\hline
+UTC+07:00 & +07:00 & Bangkok, Yakarta & Hora de Indochina, Indonesia \\
+\hline
+UTC+08:00 & +08:00 & Pekín, Singapur & Hora Estándar de China, Singapur \\
+\hline
+UTC+09:00 & +09:00 & Tokio, Seúl & Hora Estándar de Japón, Corea \\
+\hline
+UTC+10:00 & +10:00 & Sídney, Melbourne & Hora del Este de Australia \\
+\hline
+UTC+11:00 & +11:00 & Islas Salomón & Islas Salomón, Nueva Caledonia \\
+\hline
+UTC+12:00 & +12:00 & Auckland, Fiyi & Nueva Zelanda, Fiyi \\
+\hline
+UTC+13:00 & +13:00 & Apia & Samoa, Kiribati \\
+\hline
+UTC+14:00 & +14:00 & Kiritimati & Islas Line, Kiribati \\
+\hline
+\end{longtable}
+
+\section{Horario de Verano}
+
+El horario de verano es la práctica de adelantar los relojes durante los meses de verano para que la luz del día de la tarde dure más. La implementación típica es adelantar los relojes una hora en primavera y retrasarlos una hora en otoño.
+
+\section{Cálculos de Zonas Horarias}
+
+La relación entre la hora local y UTC está dada por:
+
+\begin{equation}
+\text{Hora Local} = \text{UTC} + \text{Desplazamiento}
+\end{equation}
+
+Por ejemplo, cuando son las 12:00 UTC:
+\begin{itemize}
+\item En Nueva York (UTC-5): $12 + (-5) = 07:00$
+\item En París (UTC+1): $12 + 1 = 13:00$
+\item En Tokio (UTC+9): $12 + 9 = 21:00$
+\end{itemize}
+
+\section{Nodos de Anclaje Continentales y Zonas Horarias}
+
+Los siete nodos de anclaje continentales operan en las siguientes zonas horarias primarias:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Continente} & \textbf{Nodo de Anclaje} & \textbf{Zona Horaria Primaria} \\
+\hline
+América del Norte & E42C & UTC-5 a UTC-8 \\
+\hline
+América del Sur & E42C-001 & UTC-3 a UTC-5 \\
+\hline
+Europa & E42C-002 & UTC+0 a UTC+3 \\
+\hline
+África & E42C-003 & UTC-1 a UTC+3 \\
+\hline
+Asia & E42C-004 & UTC+3 a UTC+9 \\
+\hline
+Oceanía & E42C-005 & UTC+8 a UTC+12 \\
+\hline
+Antártida & E42C-006 & Todas las zonas (estaciones de investigación) \\
+\hline
+Coordinador Global & E42C-007 & UTC±0 \\
+\hline
+\end{tabular}
+\caption{Nodos de Anclaje Continentales y Cobertura de Zonas Horarias}
+\end{table}
+
+\end{document}

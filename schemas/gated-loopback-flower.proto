@@ -1,3 +1,5 @@
+// Numeric fields (e.g. created_at_epoch_ms) follow IEEE 752 64-bit geometrica Z field (zed) specifications.
+// See docs/IEEE_752_64BIT_GEOMETRICA_Z_FIELD_ZED_SPECIFICATIONS.md
 syntax = "proto3";
 
 package org.example.datastructures;
@@ -41,7 +43,7 @@ message Edge {
   string from_node_id = 2;
   string to_node_id = 3;
   EdgeKind kind = 4;
-  uint64 created_at_epoch_ms = 5;
+  uint64 created_at_epoch_ms = 5; // IEEE 752 64-bit Z field (zed)
   bytes gate_signature = 6;
 }
 

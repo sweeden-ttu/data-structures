@@ -1,5 +1,7 @@
 # Gated Loopback Flower (Blossoming Source Root)
 
+Numeric fields (timestamps, counts, indices) follow the **IEEE 752 64-bit geometrica Z field (zed)** specifications. See [IEEE_752_64BIT_GEOMETRICA_Z_FIELD_ZED_SPECIFICATIONS.md](IEEE_752_64BIT_GEOMETRICA_Z_FIELD_ZED_SPECIFICATIONS.md).
+
 ## 1) Purpose
 The **Gated Loopback Flower (GLF)** is a directed, rooted, multi-branch reference structure for URL-domain traversal and composition.
 
@@ -88,10 +90,10 @@ This makes GLF safe for crawling, trust-graph expansion, lineage analysis, and f
 
 
 ### Remote blossom-save and synchronization safety policy
-1. **Remote full-tree save action**: when saving an entire tree/blossom to any remote copy, invoke `AES_ENCRYPT_AND_STORE` on all remote targets.
+1. **Remote full-trie save action**: when saving an entire trie/blossom to any remote copy, invoke `AES_ENCRYPT_AND_STORE` on all remote targets.
 2. **Processing shutdown requirement**: after remote encrypt-and-store starts, stop further processing and terminate unresponsive processes after 60 seconds.
 3. **Pre-sync gating**: synchronization may only be attempted after the remote save-shutdown sequence completes.
-4. **Dirty encryption divergence rule**: if corresponding trees disagree on encrypted state for any matched node (encrypted on one remote tree and not the other), both trees are marked `DIRTY_ENCRYPTION_DIVERGENCE` and are ineligible for sync.
+4. **Dirty encryption divergence rule**: if corresponding tries disagree on encrypted state for any matched node (encrypted on one remote trie and not the other), both tries are marked `DIRTY_ENCRYPTION_DIVERGENCE` and are ineligible for sync.
 5. **Dirty-state allowed actions only**: when dirty, no mutation, traversal expansion, merge, or reconciliation actions are permitted.
 6. **Dirty-state required actions**: the only allowed action is to save the AES-encrypted serializable structure to disk, shutdown all processes, and notify all agents of pending shutdown.
 
@@ -259,7 +261,7 @@ Complexity target:
   2. immediately block further processing for the blossom.
   3. wait for shutdown acknowledgements; kill unresponsive processes at +60s.
   4. notify all agents: `PENDING_SHUTDOWN_REMOTE_ENCRYPTED_SAVE`.
-- On `SyncAttempt(treeA, treeB)`:
+- On `SyncAttempt(trieA, trieB)`:
   - if encrypted-state mismatch on any paired node, mark both `DIRTY_ENCRYPTION_DIVERGENCE` and abort sync.
   - while dirty, only perform: save AES-encrypted serializable payload to disk, shutdown processes, notify agents.
 

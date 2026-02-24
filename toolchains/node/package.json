@@ -1,0 +1,13 @@
+{
+  "name": "datastructures",
+  "version": "1.0.0",
+  "description": "Data structures library - Node toolchain from data-structures repo",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/index.js"
+  },
+  "keywords": ["datastructures", "trie", "toolchain"],
+  "author": "sweeden-ttu",
+  "license": "MIT"
+}

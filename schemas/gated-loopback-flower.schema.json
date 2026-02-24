@@ -149,7 +149,8 @@
         },
         "created_at_epoch_ms": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "description": "IEEE 752 64-bit geometrica Z field (zed); uint64 epoch ms."
         },
         "gate_signature": {
           "type": "string",

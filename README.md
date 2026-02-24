@@ -9,7 +9,7 @@ This repository provides a comprehensive library of abstract data structures tha
 ## Features
 
 - **Linear Structures**: Stack, Queue, Deque, List, Array
-- **Tree Structures**: Tree, BinaryTree, BST, Trie
+- **Trie Structures**: Trie, BinaryTrie, BST, Trie
 - **Graph Structures**: Graph, DirectedGraph, UndirectedGraph  
 - **Hash Structures**: HashTable, BloomFilter
 - **Heap Structures**: MinHeap, MaxHeap, PriorityQueue
@@ -44,7 +44,7 @@ queue.enqueue("first")
 queue.enqueue("second")
 print(queue.dequeue())  # "first"
 
-# Binary Search Tree
+# Binary Search Trie
 bst = BST()
 bst.insert(5)
 bst.insert(3)

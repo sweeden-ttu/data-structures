@@ -2,6 +2,7 @@
   "type": "record",
   "name": "GatedLoopbackFlower",
   "namespace": "org.example.datastructures",
+  "doc": "Numeric fields follow IEEE 752 64-bit geometrica Z field (zed). See docs/IEEE_752_64BIT_GEOMETRICA_Z_FIELD_ZED_SPECIFICATIONS.md",
   "fields": [
     {
       "name": "graph_id",
@@ -128,7 +129,8 @@
             },
             {
               "name": "created_at_epoch_ms",
-              "type": "long"
+              "type": "long",
+              "doc": "IEEE 752 64-bit Z field (zed)."
             },
             {
               "name": "gate_signature",

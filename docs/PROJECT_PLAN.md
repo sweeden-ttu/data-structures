@@ -25,7 +25,7 @@ This document outlines the project management approach following PMBOK (Project 
 
 ### 3. Executing Phase
 - [x] Linear structures implementation
-- [x] Tree structures implementation
+- [x] Trie structures implementation
 - [x] Graph structures implementation
 - [x] Hash structures implementation
 - [x] Heap structures implementation
@@ -50,7 +50,7 @@ This document outlines the project management approach following PMBOK (Project 
 ### Phase 2: Advanced Structures (Week 3-4)
 | Milestone | Target | Status |
 |-----------|--------|--------|
-| Tree structures | Week 3 | ✅ Complete |
+| Trie structures | Week 3 | ✅ Complete |
 | Graph structures | Week 3 | ✅ Complete |
 | Hash structures | Week 4 | ✅ Complete |
 | Heap structures | Week 4 | ✅ Complete |
@@ -85,9 +85,9 @@ data-structures
 │   ├── 3.3 Deque
 │   ├── 3.4 List
 │   └── 3.5 Array
-├── 4. Tree Structures
-│   ├── 4.1 Tree
-│   ├── 4.2 BinaryTree
+├── 4. Trie Structures
+│   ├── 4.1 Trie
+│   ├── 4.2 BinaryTrie
 │   ├── 4.3 BST
 │   └── 4.4 Trie
 ├── 5. Graph Structures
@@ -123,7 +123,7 @@ data-structures
 | Category | Structures | Status |
 |----------|------------|--------|
 | Linear | Stack, Queue, Deque, List, Array | ✅ Complete |
-| Tree | Tree, BinaryTree, BST, Trie | ✅ Complete |
+| Trie | Trie, BinaryTrie, BST, Trie | ✅ Complete |
 | Graph | Graph, DirectedGraph, UndirectedGraph | ✅ Complete |
 | Hash | HashTable, BloomFilter | ✅ Complete |
 | Heap | MinHeap, MaxHeap, PriorityQueue | ✅ Complete |

@@ -7,7 +7,7 @@ across all programming projects and toolchains.
 
 from .base import AbstractDataStructure
 from .linear import Stack, Queue, Deque, List, Array
-from .tree import Tree, BinaryTree, BST, AVLTree, Trie
+from .trie import Trie, BinaryTrie, BST, AVLTrie, Trie
 from .graph import Graph, DirectedGraph, UndirectedGraph
 from .hash import HashTable, BloomFilter
 from .heap import MinHeap, MaxHeap, PriorityQueue
@@ -22,10 +22,10 @@ __all__ = [
     "Deque",
     "List",
     "Array",
-    "Tree",
-    "BinaryTree",
+    "Trie",
+    "BinaryTrie",
     "BST",
-    "AVLTree",
+    "AVLTrie",
     "Trie",
     "Graph",
     "DirectedGraph",

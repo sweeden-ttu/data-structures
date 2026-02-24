@@ -1,5 +1,5 @@
 """
-Tree data structures: Tree, BinaryTree, BST, AVLTree, Trie
+Trie data structures: Trie, BinaryTrie, BST, AVLTrie, Trie
 """
 
 from typing import Any, Iterator, Optional, List
@@ -7,22 +7,22 @@ from collections import deque
 from .base import AbstractDataStructure
 
 
-class TreeNode:
-    """Node for tree structures."""
+class TrieNode:
+    """Node for trie structures."""
 
-    def __init__(self, value: Any, children: Optional[List["TreeNode"]] = None):
+    def __init__(self, value: Any, children: Optional[List["TrieNode"]] = None):
         self.value = value
         self.children = children or []
 
 
-class Tree(AbstractDataStructure):
-    """Generic tree data structure."""
+class Trie(AbstractDataStructure):
+    """Generic trie data structure."""
 
-    def __init__(self, root: Optional[TreeNode] = None):
+    def __init__(self, root: Optional[TrieNode] = None):
         self._root = root
 
     @property
-    def root(self) -> Optional[TreeNode]:
+    def root(self) -> Optional[TrieNode]:
         return self._root
 
     def is_empty(self) -> bool:
@@ -33,7 +33,7 @@ class Tree(AbstractDataStructure):
             return 0
         return self._count_nodes(self._root)
 
-    def _count_nodes(self, node: TreeNode) -> int:
+    def _count_nodes(self, node: TrieNode) -> int:
         count = 1
         for child in node.children:
             count += self._count_nodes(child)
@@ -47,7 +47,7 @@ class Tree(AbstractDataStructure):
             return 0
         return self._node_depth(self._root)
 
-    def _node_depth(self, node: TreeNode) -> int:
+    def _node_depth(self, node: TrieNode) -> int:
         if not node.children:
             return 1
         return 1 + max(self._node_depth(child) for child in node.children)
@@ -56,37 +56,37 @@ class Tree(AbstractDataStructure):
         if self._root:
             yield from self._traverse(self._root)
 
-    def _traverse(self, node: TreeNode) -> Iterator[Any]:
+    def _traverse(self, node: TrieNode) -> Iterator[Any]:
         yield node.value
         for child in node.children:
             yield from self._traverse(child)
 
     def __repr__(self) -> str:
-        return f"Tree(root={self._root})"
+        return f"Trie(root={self._root})"
 
 
-class BinaryTreeNode:
-    """Node for binary tree structures."""
+class BinaryTrieNode:
+    """Node for binary trie structures."""
 
     def __init__(
         self,
         value: Any,
-        left: Optional["BinaryTreeNode"] = None,
-        right: Optional["BinaryTreeNode"] = None,
+        left: Optional["BinaryTrieNode"] = None,
+        right: Optional["BinaryTrieNode"] = None,
     ):
         self.value = value
         self.left = left
         self.right = right
 
 
-class BinaryTree(AbstractDataStructure):
-    """Generic binary tree data structure."""
+class BinaryTrie(AbstractDataStructure):
+    """Generic binary trie data structure."""
 
-    def __init__(self, root: Optional[BinaryTreeNode] = None):
+    def __init__(self, root: Optional[BinaryTrieNode] = None):
         self._root = root
 
     @property
-    def root(self) -> Optional[BinaryTreeNode]:
+    def root(self) -> Optional[BinaryTrieNode]:
         return self._root
 
     def is_empty(self) -> bool:
@@ -97,7 +97,7 @@ class BinaryTree(AbstractDataStructure):
             return 0
         return self._count_nodes(self._root)
 
-    def _count_nodes(self, node: BinaryTreeNode) -> int:
+    def _count_nodes(self, node: BinaryTrieNode) -> int:
         if node is None:
             return 0
         return 1 + self._count_nodes(node.left) + self._count_nodes(node.right)
@@ -108,7 +108,7 @@ class BinaryTree(AbstractDataStructure):
     def height(self) -> int:
         return self._node_height(self._root)
 
-    def _node_height(self, node: Optional[BinaryTreeNode]) -> int:
+    def _node_height(self, node: Optional[BinaryTrieNode]) -> int:
         if node is None:
             return 0
         return 1 + max(self._node_height(node.left), self._node_height(node.right))
@@ -117,7 +117,7 @@ class BinaryTree(AbstractDataStructure):
         """Inorder traversal."""
         yield from self._inorder(self._root)
 
-    def _inorder(self, node: Optional[BinaryTreeNode]) -> Iterator[Any]:
+    def _inorder(self, node: Optional[BinaryTrieNode]) -> Iterator[Any]:
         if node:
             yield from self._inorder(node.left)
             yield node.value
@@ -127,7 +127,7 @@ class BinaryTree(AbstractDataStructure):
         """Preorder traversal."""
         yield from self._preorder(self._root)
 
-    def _preorder(self, node: Optional[BinaryTreeNode]) -> Iterator[Any]:
+    def _preorder(self, node: Optional[BinaryTrieNode]) -> Iterator[Any]:
         if node:
             yield node.value
             yield from self._preorder(node.left)
@@ -137,7 +137,7 @@ class BinaryTree(AbstractDataStructure):
         """Postorder traversal."""
         yield from self._postorder(self._root)
 
-    def _postorder(self, node: Optional[BinaryTreeNode]) -> Iterator[Any]:
+    def _postorder(self, node: Optional[BinaryTrieNode]) -> Iterator[Any]:
         if node:
             yield from self._postorder(node.left)
             yield from self._postorder(node.right)
@@ -160,11 +160,11 @@ class BinaryTree(AbstractDataStructure):
         yield from self.inorder()
 
     def __repr__(self) -> str:
-        return f"BinaryTree(root={self._root})"
+        return f"BinaryTrie(root={self._root})"
 
 
 class BSTNode:
-    """Node for Binary Search Tree."""
+    """Node for Binary Search Trie."""
 
     def __init__(self, value: Any):
         self.value = value
@@ -173,7 +173,7 @@ class BSTNode:
 
 
 class BST(AbstractDataStructure):
-    """Binary Search Tree."""
+    """Binary Search Trie."""
 
     def __init__(self):
         self._root: Optional[BSTNode] = None
@@ -272,14 +272,14 @@ class BST(AbstractDataStructure):
         return self.search(value)
 
     def __iter__(self) -> Iterator[Any]:
-        yield from BinaryTree(self._root).inorder()
+        yield from BinaryTrie(self._root).inorder()
 
     def __repr__(self) -> str:
         return f"BST(size={self._size})"
 
 
 class TrieNode:
-    """Node for Trie (prefix tree)."""
+    """Node for Trie (prefix trie)."""
 
     def __init__(self):
         self.children: dict = {}
@@ -288,7 +288,7 @@ class TrieNode:
 
 
 class Trie(AbstractDataStructure):
-    """Trie (prefix tree) for string operations."""
+    """Trie (prefix trie) for string operations."""
 
     def __init__(self):
         self._root = TrieNode()

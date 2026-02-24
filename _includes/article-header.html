@@ -19,7 +19,7 @@
         <header><h1>{{ _article_title }}</h1></header>
       {%- endif -%}
       {%- if _show_edit_on_github -%}
-        {%- if site.repository and site.repository_tree -%}
+        {%- if site.repository and site.repository_trie -%}
           {%- include snippets/is_collection.html page=include.article -%}
           {%- assign _is_article_collection = __return -%}
           {%- include snippets/get-locale-string.html key='POST_ON_GITHUB' -%}
@@ -30,7 +30,7 @@
           {%- else -%}
             {%- assign _article_path = include.article.path -%}
           {%- endif -%}
-          {%- assign _github_path = site.repository | append: '/tree/' | append: site.repository_tree | append: '/' | append: _article_path | replace:'//','/' -%}
+          {%- assign _github_path = site.repository | append: '/trie/' | append: site.repository_trie | append: '/' | append: _article_path | replace:'//','/' -%}
           <span class="split-space">&nbsp;</span>
           <a class="edit-on-github"
             title="{{ _locale_post_on_github }}"

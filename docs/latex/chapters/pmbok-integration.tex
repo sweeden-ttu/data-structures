@@ -1,0 +1,37 @@
+% Volume 2, Chapter 1: PMBOK Integration
+\chapter{Using PMBOK with IEEE 752 and Blooming Directed Graph Systems}
+\label{ch:pmbok-integration}
+
+\section{PMBOK Knowledge Areas and the Z-Field Build}
+
+The \textbf{PMBOK} (Project Management Body of Knowledge) provides a framework for managing projects. When applying PMBOK to the implementation and specification of systems that use the IEEE 752 Z-field and Blooming Directed Graph Tries (including anchor root Tries with filter agents and trigger processes), the following alignments apply.
+
+\subsection{Integration Management}
+
+\begin{itemize}
+    \item \textbf{Project charter and plan}: Define scope to include IEEE 752 Z-field compliance for all numeric fields in data structures, and the deployment of the root anchor \texttt{Trie\_of\_blooming\_directed\_graphs\_with\_agents\_and\_filters} across repositories and languages.
+    \item \textbf{Unified structure}: The anchor root Trie is the single entry point; integration of filter agents and trigger process agents under this root aligns with PMBOK integration management (unified direction and change control).
+\end{itemize}
+
+\subsection{Scope and WBS}
+
+\begin{itemize}
+    \item \textbf{Scope}: (1) IEEE 752 Z-field implementation in all relevant data structures; (2) Blooming directed graph as nodes (repos) and edges (e.g.\ to \texttt{github\_actions}); (3) Trie-based root anchor; (4) Filter agents (collections) and trigger process agents per platform.
+    \item \textbf{Work breakdown}: Decompose by repository, by language (Swift, Objective-C, Ruby, TypeScript, Python, C\#, Java, Bash, Zsh, Git, GitHub, HPCC), and by component (root anchor, filter agents, trigger process agent, Z-field types).
+\end{itemize}
+
+\subsection{Quality and Compliance}
+
+\begin{itemize}
+    \item \textbf{Quality standards}: Conformance to IEEE 752 specification (64-bit for timestamps, counts, indices); consistent semantics for filter and trigger actions across 12 languages and 4 environments.
+    \item \textbf{Verification}: Tests (e.g.\ DataStructuresIEEE752 Swift package, unit tests for Trie root and agents) verify Z-field types and anchor/filter/trigger behavior.
+\end{itemize}
+
+\subsection{Risk and Stakeholders}
+
+\begin{itemize}
+    \item \textbf{Risk}: Drift from 64-bit Z-field (e.g.\ use of 32-bit); inconsistent naming or behavior of anchor Trie, filter agents, or trigger processes across repos.
+    \item \textbf{Stakeholders}: Consumers of the 14 repositories and 12 language implementations; automation and tooling that assume the root anchor and IEEE 752 types.
+\end{itemize}
+
+This chapter provides the bridge between PMBOK practices and the technical implementation of the IEEE 752 Z-field and Blooming Directed Graph Trie build described in the following chapters.

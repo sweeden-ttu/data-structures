@@ -1,0 +1,41 @@
+% Volume 1, Chapter 1: IEEE 752 Z-Field Theory
+\chapter{IEEE 752 Z-Field Theory}
+\label{ch:ieee752-zfield-theory}
+
+\section{Scope and Definitions}
+
+The \textbf{IEEE 752 64-bit geometrica Z-field (zed)} specifies numeric representation for structural and geometric data in data structures and graph systems. The Z-field denotes the integer domain \(\mathbb{Z}\); all geometric, structural, and index-like numeric values that are integers \emph{must} use fixed-width 64-bit integer representation where the schema or API specifies a numeric type.
+
+\subsection{Z-Field (Zed)}
+
+\begin{itemize}
+    \item \textbf{Z-field}: The integer domain \(\mathbb{Z}\). Timestamps (epoch milliseconds), counts, sizes, indices, and dimensions use 64-bit width.
+    \item \textbf{64-bit}: All such integer fields use \textbf{64-bit} width (signed or unsigned as specified per field).
+    \item \textbf{Geometrica}: Applies to geometric/structural uses in graph nodes, edges, tries, and trie-based anchor structures.
+\end{itemize}
+
+\subsection{Integer (Z-Field) Rules}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Context & Type & Notes \\
+\midrule
+Timestamps (epoch ms) & unsigned 64-bit & e.g.\ \texttt{created\_at\_epoch\_ms} \\
+Counts, sizes, indices & 64-bit (signed/unsigned) & \texttt{uint64} non-negative; \texttt{int64} when sign needed \\
+Identity ordinals/slots & as in schema & e.g.\ hex \(0x00\)--\(0x63\) (0x64 slots) \\
+\bottomrule
+\end{tabular}
+\caption{IEEE 752 Z-field integer usage.}
+\end{table}
+
+No 32-bit integer types shall be used for timestamp, count, index, or size fields in the geometrica Z-field. Serialization in Protobuf, JSON, or Avro shall use the 64-bit type (\texttt{uint64}, \texttt{int64}, \texttt{long}) as defined in the schema.
+
+\subsection{Floating-Point (When Used)}
+
+Where floating-point is required (e.g.\ priorities, weights, metrics), use \textbf{IEEE 754-2019} (or equivalent) \textbf{binary64} (64-bit double precision). Do not use 32-bit float for geometrica or structural numeric fields when 64-bit is available.
+
+\section{Language Mapping}
+
+Implementations shall follow the language mapping for 64-bit unsigned (Z-field), 64-bit signed, and 64-bit float (IEEE 754) as specified in the repository \texttt{IEEE\_752\_64BIT\_GEOMETRICA\_Z\_FIELD\_ZED\_SPECIFICATIONS} document (Swift: \texttt{UInt64}/\texttt{Int64}; C\#: \texttt{ulong}/\texttt{long}; Java: \texttt{long}; Python: \texttt{int}/\texttt{float}; etc.).

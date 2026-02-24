@@ -1,0 +1,58 @@
+% Volume 2, Chapter 3: Anchor Root Tries and Filter/Trigger Build
+\chapter{Anchor Root Tries of Blooming Directed Graphs with Filter Agents and Trigger Processes}
+\label{ch:anchor-root-tries-filter-trigger}
+
+\section{Root Anchor Object}
+
+The \textbf{root anchor object} in every repository and language is:
+
+\begin{center}
+\texttt{Trie\_of\_blooming\_directed\_graphs\_with\_agents\_and\_filters}
+\end{center}
+
+It is the single entry point: a Trie whose keys are repo names or context-key prefixes and whose values hold references to:
+
+\begin{itemize}
+    \item the \textbf{blooming-directed-graph} node (or graph reference),
+    \item the \textbf{filter agents} (collection) for that context,
+    \item the \textbf{trigger process agent} for that context.
+\end{itemize}
+
+Everything else (blooming-directed-graph, filter agents, trigger process agent) hangs off this root. The anchor root Trie is implemented in all 12 languages and deployed in all 14 repositories.
+
+\section{Filter Agents (Collections)}
+
+\textbf{Blooming directed graph filter agents} are collections that take the graph (nodes and edges) and optional parameters and return a filtered subset. Common semantics across platforms:
+
+\begin{itemize}
+    \item \texttt{filter\_by\_receiver(nodes, ``github'' | ``hpcc'')},
+    \item \texttt{filter\_by\_action\_where(nodes, ``github'' | ``hpcc'')},
+    \item \texttt{filter\_by\_action\_client(nodes, ``macbook'' | ``rockydesktop'')},
+    \item \texttt{filter\_by\_repo\_name(nodes, pattern)},
+    \item \texttt{filter\_by\_context\_key(nodes, key)}.
+\end{itemize}
+
+Implementations live under \texttt{blooming\_directed\_graph\_agents/filter\_agents/<platform>/}. Any numeric fields used in filtering (e.g.\ counts, indices) shall conform to IEEE 752 Z-field (64-bit).
+
+\section{Trigger Process Agent}
+
+The \textbf{blooming directed graph trigger process agent} takes a node (or filtered set), an action type, and optional payload, and triggers a process. Action types include:
+
+\begin{itemize}
+    \item \texttt{workflow\_dispatch}, \texttt{job\_submit},
+    \item \texttt{git\_push}, \texttt{git\_fetch},
+    \item \texttt{fetch\_merge}, \texttt{push\_merge}, \texttt{pull\_merge},
+    \item \texttt{run\_script}, \texttt{notify}.
+\end{itemize}
+
+Implementations live under \texttt{blooming\_directed\_graph\_agents/trigger\_process\_agent/<platform>/}. Payloads and any timestamps or counts shall use 64-bit types per IEEE 752 where applicable.
+
+\section{Build and PMBOK}
+
+The \textbf{build} of the anchor root Tries of Blooming Directed Graphs with filter agents and trigger processes is governed by:
+
+\begin{enumerate}
+    \item \textbf{IEEE 752 Z-field}: All timestamps, counts, and indices in data structures and agent payloads use 64-bit types as specified.
+    \item \textbf{PMBOK}: Scope (repos, languages, components), WBS (by repo/language/component), quality (Z-field compliance and test coverage), and integration (single root anchor, consistent filter/trigger semantics) are managed per PMBOK practices.
+    \item \textbf{Deployment}: The same directory layout (\texttt{Trie\_of\_blooming\_directed\_graphs\_with\_agents\_and\_filters/}, \texttt{blooming\_directed\_graph\_agents/}) and the same specification documents (e.g.\ \texttt{IEEE\_752\_64BIT\_GEOMETRICA\_Z\_FIELD\_ZED\_SPECIFICATIONS}, \texttt{BLOOMING\_DIRECTED\_GRAPH\_AGENTS}, \texttt{TRIE\_ROOT\_ANCHOR}) are used across all 14 repositories to ensure a consistent, testable, and maintainable build.
+\end{enumerate}

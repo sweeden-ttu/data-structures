@@ -1,0 +1,32 @@
+% Volume 2, Chapter 2: Blooming Directed Graph Tries
+\chapter{Blooming Directed Graph Tries}
+\label{ch:blooming-directed-graph-tries}
+
+\section{Blooming Directed Graph}
+
+A \textbf{blooming-directed-graph} is a directed graph whose nodes are repositories (e.g.\ under \texttt{\textasciitilde/projects}) and whose edges are directed (e.g.\ repo \(\to\) \texttt{github\_actions}). The term is specific and distinct from a generic ``blooming graph.'' Each repository is a node; edges link nodes to automation targets such as GitHub Actions.
+
+\subsection{Graph Structure and Z-Field}
+
+Graph edges that carry temporal or structural metadata shall use IEEE 752 Z-field types. For example:
+
+\begin{itemize}
+    \item \texttt{created\_at\_epoch\_ms}: \texttt{uint64} (epoch milliseconds).
+    \item Counts of nodes or edges: \texttt{UInt64} or equivalent in the implementation language.
+\end{itemize}
+
+\section{Tries over Blooming Directed Graphs}
+
+A \textbf{Trie} (prefix trie) can index blooming directed graphs by key (e.g.\ repo name or context-key prefix). Each key maps to a value that references:
+
+\begin{enumerate}
+    \item A \textbf{blooming-directed-graph} node (or subgraph),
+    \item Associated \textbf{filter agents} (collections that filter nodes by receiver, action\_where, action\_client, repo name),
+    \item Associated \textbf{trigger process agent} (which triggers workflow\_dispatch, git actions, fetch\_merge, push\_merge, pull\_merge, job\_submit, run\_script, notify).
+\end{enumerate}
+
+Such a Trie provides a single, consistent index for resolving a key to the corresponding graph context and agents. Implementation of the Trie (insert, get, starts\_with) and of the stored values shall use 64-bit types for any counts or timestamps per IEEE 752.
+
+\section{Cross-Repository and Cross-Language Consistency}
+
+Blooming directed graph Tries are implemented in all 12 languages (Swift, Objective-C, Ruby, TypeScript, Python, C\#, Java, Bash, Zsh, Git, GitHub, HPCC) and are present in all 14 repositories. This ensures that tooling and automation can assume a single conceptual structure: a Trie of blooming directed graphs with agents and filters, with Z-field-compliant numeric fields throughout.

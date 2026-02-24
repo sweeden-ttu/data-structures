@@ -1,0 +1,32 @@
+% Volume 1, Chapter 2: Implementation and Specification Guidelines
+\chapter{IEEE 752 Implementation and Specification Guidelines}
+\label{ch:ieee752-spec-guidelines}
+
+\section{Specification Guidelines}
+
+\subsection{Schema Compliance}
+
+\begin{itemize}
+    \item \textbf{Protobuf}: Use \texttt{uint64}/\texttt{int64} for timestamp, count, index, and size fields. No \texttt{uint32}/\texttt{int32} for such geometrica fields.
+    \item \textbf{JSON Schema}: Use \texttt{"type": "integer"} with \texttt{"minimum"}/\texttt{"maximum"} or format hint for 64-bit range where applicable.
+    \item \textbf{Avro}: Use \texttt{long} for 64-bit integers; \texttt{double} for 64-bit float.
+\end{itemize}
+
+\subsection{Implementation Checklist}
+
+When implementing data structures that participate in the Z-field:
+
+\begin{enumerate}
+    \item Identify all numeric fields that represent timestamps, counts, indices, or sizes.
+    \item Map each to \texttt{UInt64}, \texttt{Int64}, or \texttt{Double} (IEEE 754) per the language mapping.
+    \item Ensure wire formats (e.g.\ Gated Loopback Flower \texttt{created\_at\_epoch\_ms}) use \texttt{uint64}.
+    \item Document any range limits where the runtime does not provide native 64-bit types.
+\end{enumerate}
+
+\section{References}
+
+\begin{itemize}
+    \item Gated Loopback Flower: \texttt{created\_at\_epoch\_ms} is \texttt{uint64} (compliant).
+    \item Node identity hex space: \(0x00\)--\(0x63\) (0x64 slots) is separate from the 64-bit Z-field; both apply.
+    \item IEEE 754: ISO/IEC/IEEE 60559 (binary64) for double-precision floating-point when used.
+\end{itemize}

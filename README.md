@@ -46,7 +46,17 @@ When specifying the trie independent of language:
 
 This matches the usual NFA/DFA vocabulary and supports describing the trie as the automaton that recognizes the set of stored keys (and, with failure links, the Aho–Corasick automaton for multi-pattern matching).
 
-## Installation
+### Clarifications (Aho–Corasick algorithm)
+
+The following clarifies terminology and behavior from the [Wikipedia Aho–Corasick article](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm#Example):
+
+- **Suffix link (blue arc)**: From each node, the suffix link points to the node whose path is the **longest strict suffix** of the current path that exists in the trie. (A strict suffix is a suffix not equal to the full path.) The root has no suffix link. These links allow the automaton to transition on mismatch without backtracking in the input text: when no child matches the current symbol, follow the suffix link and try again until the root.
+
+- **Dictionary-suffix link (green arc)**: From each node, the dictionary-suffix link points to the first node (if any) reachable by following suffix links that is a dictionary entry (`in_dictionary == true`). At each step, after transitioning to a node, the algorithm outputs the current node if it is in the dictionary, then follows dictionary-suffix links to report any other dictionary matches ending at the same position.
+
+- **Complexity**: Construction is linear in the total length of all dictionary strings. Search is linear in the length of the text plus the number of matches. The algorithm makes a **single pass** over the text with **no backtracking**.
+
+- **Example** (Wikipedia): Dictionary D = {a, ab, bab, bc, bca, c, caa}. On input `abccab`, the algorithm reports (pattern, 1-based end index): a:1, ab:2, bc:3, c:3, c:4, a:5, ab:6. Implementations should reproduce this for the same D and text; see [`spec.js`](spec.js) for a machine-readable test specification.
 
 ```bash
 pip install datastructures
